@@ -12,8 +12,8 @@
                          :asset-path "/js"
   
                         :modules    {:main
-                                     {:entries [gaps-editor.core]}}
+                                     {:entries [ft.core]}}
  
-                       :devtools   {:after-load gaps-editor.core/main
+                       :devtools   {:after-load ft.core/main
                                     :http-root  "public"
                                     :http-port  3000}}}}

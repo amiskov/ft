@@ -1,0 +1,41 @@
+body {
+  font: 14px/1.4 sans-serif;
+}
+
+.editable {
+margin: 0 0 20px;
+border: 1px solid gray;
+padding: 20px
+}
+
+.block {
+display: block
+}
+
+.editor {
+  font: 14px/1.4 monospace;
+  padding: 10px 15px;
+}
+
+.variants {
+margin:0;
+padding: 0;
+}
+.phrase {
+font-size: 21px;
+padding: 0 0 10px;
+}
+.gap {
+font-weight: bold;
+background: lightgray;
+  border-radius: 20px;
+  padding:0 10px;
+}
+.variants li {
+  display: inline-block;
+  background: blue;
+  color: white;
+  margin: 0 5px 0 0;
+  padding: 5px 10px;
+  border-radius: 20px;
+}
