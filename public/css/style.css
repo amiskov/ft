@@ -116,3 +116,7 @@ cursor: pointer;
 .btn:disabled {
   background: #CCC;
 }
+.response {
+margin-left: 1em;
+
+}
