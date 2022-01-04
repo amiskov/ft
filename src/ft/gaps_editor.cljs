@@ -12,9 +12,10 @@
 (defonce user-answers (r/atom {}))
 
 (defn parse-phrase [phrase]
-  "Example: 'Hello [World](Earth, Mars)!'."
   (swap! exercise assoc :phrase phrase)
-
+  (swap! ui assoc :visible-dropdown-idx nil :answers-highlighted? false)
+  (reset! user-answers {})
+  (prn @user-answers)
   (let [placeholders (re-seq #"\[(.+?)\]\((.+?)\)" (:phrase @exercise))
         parts-without-gaps (str/split (:phrase @exercise) #"\[.+?\)")
         parse-placeholder (fn [[_ answer wrong-variants]]
@@ -32,13 +33,13 @@
 
 (defn editor []
   [:<>
-   [:div
-    [:label.block "Enter the phrase with replacements:"]
-    [:textarea.editor
-     {:rows      10
-      :cols      100
-      :value     (:phrase @exercise)
-      :on-change #(parse-phrase (.. % -target -value))}]]])
+   [:div.editor
+    [:label "Enter the phrase with replacements:"]
+    [:textarea.editor__area
+     {:value     (:phrase @exercise)
+      :on-change #(parse-phrase (.. % -target -value))}]
+    [:small "List all possible answers inside " [:code "{...}"]
+     ". Mark the right answer with " [:code "*...*"] ". E.g. " [:code "London is {*the*, a} capital of the UK."]]]])
 
 (defn render-gap [idx]
   (let [{:keys [:answer :variants]} (get (:gaps @exercise) idx)
@@ -78,9 +79,10 @@
   (let [
         {:keys [parts]} @exercise]
     [:<>
-     [:div.out-arrow "↓"]
-     [:pre.out "@exercise\n\n" (with-out-str (cljs.pprint/pprint @exercise))]
-     [:div.out-arrow "↓"]
+     ;[:div.out-arrow "↓"]
+     ;[:pre.out "@exercise\n\n" (with-out-str (cljs.pprint/pprint @exercise))]
+     ;[:div.out-arrow "↓"]
+     [:label "Choose the correct opiton:"]
      [:div.exercise
       (doall
         (for [[idx part] (map-indexed (fn [idx itm] [idx itm]) parts)]
@@ -88,8 +90,8 @@
            [:span part]
            (when (< (inc idx) (count parts))                ; TODO: make it better
              (render-gap idx))]))]
-     [:pre.out "@user-answers\n\n" (with-out-str (cljs.pprint/pprint @user-answers))]
-     [:div
+     ;[:pre.out "@user-answers\n\n" (with-out-str (cljs.pprint/pprint @user-answers))]
+     [:div.actions
       [:button.btn
        {:disabled (not= (count @user-answers) (count (:gaps @exercise)))
         :on-click check-user-answers}
