@@ -1,10 +1,10 @@
 (ns ft.core
   (:require [reagent.dom :as rdom]
-            [ft.gaps-editor :refer [editor repr parse-phrase editor-content]]))
+            [ft.gaps-editor :refer [editor render-phrase parse-phrase exercise]]))
 
 (defn app []
   [:div (editor)
-   (repr)])
+   (render-phrase)])
 
 (defn ^:export main []
   (rdom/render [app] (js/document.getElementById "app"))
