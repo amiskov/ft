@@ -26,10 +26,35 @@ font-size: 21px;
 padding: 0 0 10px;
 }
 .gap {
+display: inline-block;
+margin: 0 .3em;
+  position: relative;
+}
+.gap__index {
 font-weight: bold;
 background: lightgray;
   border-radius: 20px;
   padding:0 10px;
+  cursor: pointer;
+}
+.gap__dropdown {
+position: absolute;
+padding:0;
+margin:0;
+  list-style-type: none;
+  box-shadow: 1px 1px 3px #CCC;
+  border: 1px solid #EEE;
+  border-radius: 5px;
+}
+.gap__item {
+padding:0;
+margin:0;
+white-space: nowrap;
+cursor:pointer;
+padding: 0 5px;
+}
+.gap__item:hover {
+background: #EEE;
 }
 .variants li {
   display: inline-block;
@@ -38,4 +63,13 @@ background: lightgray;
   margin: 0 5px 0 0;
   padding: 5px 10px;
   border-radius: 20px;
+}
+.out-arrow {
+font-size: 32px;
+text-align: center;
+}
+.out {
+background: #EEE;
+padding: 10px;
+overflow-x: scroll;
 }
