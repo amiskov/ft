@@ -4,7 +4,7 @@
 set -e
 
 # build
-# npm run clean && npm run release
+npm run clean && npm run release
 
 # navigate into the build output directory
 cd public
