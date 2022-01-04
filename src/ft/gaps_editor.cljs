@@ -10,6 +10,7 @@
 (defonce ui (r/atom {:visible-dropdown-idx nil
                      :answers-highlighted? false}))
 
+;; {0 "chosen answer", ...}
 (defonce user-answers (r/atom {}))
 
 (defn parse-phrase [phrase]
@@ -99,4 +100,11 @@
       [:span.response (when (:answers-highlighted? @ui)
                         (if (every? right-answer? (keys @user-answers))
                           "✅ You're right!"
-                          "🤔 Not exactly..."))]]]))
+                          "🤔 Not exactly..."))]]
+     [:hr]
+     [:h3 "Data Representation"]
+     [:p "Exercise:"]
+     [:pre.out (str @exercise)]
+     [:p "User answers:"]
+     [:pre.out (str @user-answers)]]))
+
