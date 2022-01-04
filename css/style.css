@@ -21,7 +21,7 @@ display: block
 margin:0;
 padding: 0;
 }
-.phrase {
+.exercise {
 font-size: 21px;
 padding: 0 0 10px;
 }
@@ -30,21 +30,38 @@ display: inline-block;
 margin: 0 .3em;
   position: relative;
 }
-.gap__index {
-font-weight: bold;
-background: lightgray;
-  border-radius: 20px;
+.gap__text {
+  font-weight: bold;
+  background: lightgray;
+  border: 2px solid lightgray;
+  border-radius: 10px;
   padding:0 10px;
   cursor: pointer;
 }
+.gap__text_right {
+border-color: green;
+background: green;
+color: white;
+}
+.gap__text_wrong {
+border-color: red;
+background: red;
+color: white;
+}
 .gap__dropdown {
-position: absolute;
-padding:0;
-margin:0;
+  position: absolute;
+  z-index: 10;
+  background: white;
+  display: none;
+  padding:0;
+  margin:0;
   list-style-type: none;
   box-shadow: 1px 1px 3px #CCC;
   border: 1px solid #EEE;
   border-radius: 5px;
+}
+.gap__dropdown_visible {
+display: block;
 }
 .gap__item {
 padding:0;
