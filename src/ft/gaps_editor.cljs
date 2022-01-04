@@ -8,7 +8,8 @@
                                     :variants '()]}))
 
 (defonce ui (r/atom {:visible-dropdown-idx nil
-                     :answers-highlighted? false}))
+                     :answers-highlighted? false
+                     :data-repr-shown?     false}))
 
 ;; {0 "chosen answer", ...}
 (defonce user-answers (r/atom {}))
@@ -36,8 +37,8 @@
     [:textarea.editor__area
      {:value     (:phrase @exercise)
       :on-change #(parse-phrase (.. % -target -value))}]
-    [:small "List all answer variants inside " [:code "{...}"] " separated with " [:code ";"] "."
-     [:br] "Mark the right answer with " [:code "*...*"] "." [:br] "E.g. " [:code "London is {*the*; a} capital of the UK."]]]])
+    [:small "List all answer variants inside " [:code "{...}"] " separated with " [:code ";"] ".
+    Mark the right answer with " [:code "*...*"] ". E.g. " [:code "London is {*the*; a} capital of the UK."]]]])
 
 (defn right-answer? [idx]
   (let [user-answer (get @user-answers idx)
@@ -102,9 +103,14 @@
                           "✅ You're right!"
                           "🤔 Not exactly..."))]]
      [:hr]
-     [:h3 "Data Representation"]
-     [:p "Exercise:"]
-     [:pre.out (str @exercise)]
-     [:p "User answers:"]
-     [:pre.out (str @user-answers)]]))
+     [:small.pseudo-link
+      {:on-click #(swap! ui assoc :data-repr-shown? (not (:data-repr-shown? @ui)))}
+      "Show data representation"]
+     (when (:data-repr-shown? @ui)
+       [:<>
+         [:h3 "Data Representation"]
+         [:p "Exercise:"]
+         [:pre.out (str @exercise)]
+         [:p "User answers:"]
+         [:pre.out (str @user-answers)]])]))
 

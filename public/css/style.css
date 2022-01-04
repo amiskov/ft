@@ -120,3 +120,7 @@ cursor: pointer;
 margin-left: 1em;
 
 }
+.pseudo-link {
+border-bottom: 1px dashed;
+cursor: pointer;
+}
