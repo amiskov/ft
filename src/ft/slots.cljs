@@ -24,15 +24,13 @@
   :tutor-id (:id t1)
   :start-at (.getTime (js/Date. "2022-01-05 08:00"))
   :end-at   (.getTime (js/Date. "2022-01-05 12:00"))}
-
- ;; ...and `t1` is also available Jan 5th from 15:00 to 17:00
- ;; and that's it for `t1` for Jan 5th:
+ ;; ...and `t1` is also available Jan 5th from 15:00 to 17:00.
  {:id       #uuid"225b3fa6-6d0e-4137-b16c-6c54fc5b7fba"
   :tutor-id (:id t1)
   :start-at (.getTime (js/Date. "2022-01-05 15:00"))
   :end-at   (.getTime (js/Date. "2022-01-05 17:00"))}
 
- ;; Then, `t1` is available Jan 6th from 08:00 to 15:00 (only one period):
+ ;; Then, `t1` is available Jan 6th from 08:00 to 15:00:
  {:id       #uuid"be52ea11-9b45-451b-800b-8d273f37340d"
   :tutor-id (:id t1)
   :start-at (.getTime (js/Date. "2022-01-06 08:00"))
