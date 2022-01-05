@@ -68,7 +68,7 @@
         :otherwise (inc idx))]
      [:ul.gap__dropdown
       {:class (when (= idx (:visible-dropdown-idx @ui)) "gap__dropdown_visible")}
-      (for [v (shuffle (conj variants answer))]
+      (for [v (shuffle (conj variants answer))] ; shuffle makes this function non-deterministic, that's bad
         [:li.gap__item
          {:key      (str "test" v)
           :on-click #(select-answer idx v)}
